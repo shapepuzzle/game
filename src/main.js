@@ -1,9 +1,4 @@
-import Alpine from 'alpinejs'
-
 import { Game } from './scripts/game';
-
-window.Alpine = Alpine
-Alpine.start()
 
 function setTheme(theme) {
     if (theme === "dark") {
@@ -108,13 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fab_button_pause.addEventListener("click", () => {
         console.log('fab_button_pause');
-        window.game.pauseGame();
+        if (window.game.paused) {
+            window.game.resumeGame();
+            // fab_button_pause.classList.add("btn-error")
+            // fab_button_pause.classList.remove("btn-success")
+            // menu.classList.add("hidden")
+        } else {
+            window.game.pauseGame();
+            // fab_button_pause.classList.remove("btn-error")
+            // fab_button_pause.classList.add("btn-success")
+            // menu.classList.remove("hidden")
+        }
     });
 
-    fab_button_play.addEventListener("click", () => {
-        console.log('fab_button_play');
-        window.game.resumeGame();
-    });
+    // fab_button_play.addEventListener("click", () => {
+    //     console.log('fab_button_play');
+    //     window.game.resumeGame();
+    // });
 
     settings_fullscreen.addEventListener("change", () => {
         if (settings_fullscreen.checked) {
@@ -150,5 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     settings_button_close.addEventListener("click", () => {
         window.game.resumeGame();
+    });
+
+    window.toggleDebug = () => {
+        debugging.classList.toggle("hidden");
+    }
+
+    window.addEventListener("keydown", (event) => {
+        if (event.code === "Escape") {
+            event.preventDefault()
+        }
     });
 });

@@ -41,7 +41,7 @@ export class Puzzle {
     }
 
     loadAssets() {
-        this.assetManager.register(`puzzle_${this.id}_image`, `/stages/${this.id}/${this.id}.png`, "image");
+        this.assetManager.register(`puzzle_${this.id}_image`, `./stages/${this.id}/${this.id}.png`, "image");
 
         //PIECES & HOLDERS
         for (var i = 0; i < this.numberOfPieces; i++) {
@@ -62,7 +62,7 @@ export class Puzzle {
         // }
         stage_voice.setAttribute("disabled", true);
         if (this.hasVoice) {
-            this.assetManager.register(`puzzle_${this.id}_voice`, `/stages/${this.id}/voice.mp3`, "audio");
+            this.assetManager.register(`puzzle_${this.id}_voice`, `./stages/${this.id}/voice.mp3`, "audio");
         }
 
         // SOUNDS
@@ -75,7 +75,7 @@ export class Puzzle {
         // }
         stage_sound.setAttribute("disabled", true);
         if (this.hasSound) {
-            this.assetManager.register(`puzzle_${this.id}_sound`, `/stages/${this.id}/sound.mp3`, "audio");
+            this.assetManager.register(`puzzle_${this.id}_sound`, `./stages/${this.id}/sound.mp3`, "audio");
         }
 
         this.assetManager.onComplete(() => {
