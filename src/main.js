@@ -1,4 +1,6 @@
 import { Game } from './scripts/game';
+import { createAdsenseTag } from './scripts/adsense';
+createAdsenseTag(import.meta.env.MODE);
 
 function setTheme(theme) {
     if (theme === "dark") {

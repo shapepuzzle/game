@@ -448,9 +448,9 @@ export class Game {
             if (settings_bgm.checked) {
                 this.assetManager.get("bgm").pause();
             }
-            fab_button_pause.classList.remove("btn-error")
-            fab_button_pause.classList.add("btn-success")
-            menu.classList.remove("hidden")
+            fab_button_pause.classList.remove("btn-error");
+            fab_button_pause.classList.add("btn-success");
+            menu.classList.remove("hidden");
         }
     }
 

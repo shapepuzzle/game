@@ -9,9 +9,12 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  base: './',
   build: {
     outDir: 'dist',
     minify: true,
+    manifest: true,
+    ssrManifest: true,
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
