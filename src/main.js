@@ -125,9 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     settings_fullscreen.addEventListener("change", () => {
         if (settings_fullscreen.checked) {
-            window.game.fullscreen();
+            document.body.requestFullscreen();
+            settings.close();
+            window.game.resumeGame();
         } else {
-            window.game.exitfullscreen();
+            document.exitFullscreen();
+            settings.close();
+            window.game.resumeGame();
         }
     });
 
@@ -157,6 +161,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     settings_button_close.addEventListener("click", () => {
         window.game.resumeGame();
+    });
+
+    fab_button_settings.addEventListener("click", () => {
+        settings.showModal();
+    });
+
+    fab_button_debug.addEventListener("click", () => {
+        window.toggleDebug();
     });
 
     window.toggleDebug = () => {

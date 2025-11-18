@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "publish": "node updateVersion.js && ./publish.sh"
+    "publish": "vite build && node updateVersion.js && ./publish.sh",
+    "build-electron": "vite build --mode electron && ./copy-electron.sh"
   },
   "devDependencies": {
     "vite": "^7.1.7"
