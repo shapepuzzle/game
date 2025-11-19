@@ -36,14 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     theme_toggle.addEventListener("change", () => {
         if (theme_toggle.checked) {
+            gtag('event', 'theme_changed_dark');
             setTheme("dark");
         } else {
+            gtag('event', 'theme_changed_light');
             setTheme("light");
         }
         console.log(localStorage.theme);
     });
 
     playNow.addEventListener("click", () => {
+        gtag('event', 'play_now_clicked');
         landing.classList.add("hidden");
         app.classList.remove("hidden");
         // GAME START
@@ -58,15 +61,16 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(`ScreenOrientation change: ${event.target.type}, ${event.target.angle} degrees.`);
     });
 
-    canvas.addEventListener("fullscreenchange", () => {
-        if (document.fullscreenElement) {
-            settings_fullscreen.checked = true;
-        } else {
-            settings_fullscreen.checked = false;
-        }
-    });
+    // canvas.addEventListener("fullscreenchange", () => {
+    //     if (document.fullscreenElement) {
+    //         settings_fullscreen.checked = true;
+    //     } else {
+    //         settings_fullscreen.checked = false;
+    //     }
+    // });
     
     stage_next.addEventListener("click", () => {
+        gtag('event', 'stage_next_clicked');
         if (window.game.puzzle.hasVoice) {
             var voice = window.game.puzzle.assetManager.get(`puzzle_${window.game.puzzle.id}_voice`);
             voice.pause();
@@ -82,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     stage_voice.addEventListener("click", () => {
+        gtag('event', 'stage_voice_clicked');
         if (window.game.puzzle.hasVoice && !stage_voice.getAttribute("disabled")) {
             var voice = window.game.puzzle.assetManager.get(`puzzle_${window.game.puzzle.id}_voice`);
             voice.addEventListener("ended", () => {
@@ -93,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     stage_sound.addEventListener("click", () => {
+        gtag('event', 'stage_sound_clicked');
         if (window.game.puzzle.hasSound && !stage_sound.getAttribute("disabled")) {
             var sound = window.game.puzzle.assetManager.get(`puzzle_${window.game.puzzle.id}_sound`);
             sound.addEventListener("ended", () => {
@@ -125,10 +131,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     settings_fullscreen.addEventListener("change", () => {
         if (settings_fullscreen.checked) {
+            gtag('event', 'settings_fullscreen_on');
             document.body.requestFullscreen();
             settings.close();
             window.game.resumeGame();
         } else {
+            gtag('event', 'settings_fullscreen_off');
             document.exitFullscreen();
             settings.close();
             window.game.resumeGame();
@@ -137,24 +145,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     settings_bgm.addEventListener("change", () => {
         if (settings_bgm.checked) {
+            gtag('event', 'settings_bgm_on');
             window.game.startBGM();
         } else {
+            gtag('event', 'settings_bgm_off');
             window.game.stopBGM();
         }
     });
 
     settings_sfx.addEventListener("change", () => {
         if (settings_sfx.checked) {
+            gtag('event', 'settings_sfx_on');
             window.game.startSFX();
         } else {
+            gtag('event', 'settings_sfx_off');
             window.game.stopSFX();
         }
     });
 
     settings_autosnap.addEventListener("change", () => {
         if (settings_autosnap.checked) {
+            gtag('event', 'settings_autosnap_on');
             window.game.autoSnapOn();
         } else {
+            gtag('event', 'settings_autosnap_off');
             window.game.autoSnapOff();
         }
     });
@@ -164,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     fab_button_settings.addEventListener("click", () => {
+        gtag('event', 'fab_button_settings_clicked');
         settings.showModal();
     });
 
